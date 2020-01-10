@@ -1,6 +1,7 @@
 import json
 import csv
 from random import random
+import numpy as np
 
 def matrix_product(A, B):
     n = len(A); p = len(A[0]);  q = len(B[0])
@@ -60,7 +61,7 @@ def ft_linear_regression() :
 	print(T[1])
 	final_T = gradient_descent(X, Y, T, learning_rate=0.001, n_iterations=1000)
 	teta0 = final_T[0]
-	teta1 = final_t[1]
+	teta1 = final_T[1]
 	print_tetas_values(teta0, teta1)
 
 if __name__ == '__main__' :
