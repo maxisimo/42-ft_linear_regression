@@ -1,14 +1,14 @@
 import json
 
-def get_tetas_values() :
+def get_thetas_values() :
     with open("file.json", "r") as read_file:
         data = json.load(read_file)
-    return data["teta0"], data["teta1"]
+    return data["theta0"], data["theta1"]
 
 def price_estimation() :
-    teta0, teta1 = get_tetas_values()
+    theta0, theta1 = get_thetas_values()
     km = input("Quel est le kilométrage de votre voiture ? ")
-    price = teta0 + int(km) * teta1
+    price = theta0 + int(km) * theta1
     print("Votre voiture est estimée à " + str(price) + " euros.")
 
 
