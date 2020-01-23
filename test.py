@@ -1,5 +1,5 @@
-import json
 import csv
+import show
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -36,24 +36,17 @@ def gradient_descent(X, Y, Theta, learning_rate, n_iterations) :
 		cost_history[i] = cost_function(X, Y, Theta)
 	return Theta, cost_history
 
-def print_thetas_values(theta0, theta1) :
-	thetas = {
-		"theta0": theta0,
-		"theta1": theta1
-	}
-	with open("file.json", "w") as json_file:
-		json.dump(thetas, json_file, indent=4)
-
 
 def ft_linear_regression() :
 	x, X, Y, Theta = dataset()
-	final_Theta, cost_history = gradient_descent(X, Y, Theta, learning_rate=0.015, n_iterations=1000)
+	learning_rate = 0.015
+	n_iterations = 1000
+	final_Theta, cost_history = gradient_descent(X, Y, Theta, learning_rate, n_iterations)
 	prediction = model(X, final_Theta)
-	# plt.plot(range(1000), cost_history)
-	plt.scatter(x, Y)
-	plt.plot(x, prediction, c='r')
-	plt.show()
-	print_thetas_values(float(final_Theta[0]), float(final_Theta[1]))
+
+	show.cost_history_curve(n_iterations, cost_history)
+	show.prediction_curve(x, Y, prediction)
+	show.thetas_values(float(final_Theta[0]), float(final_Theta[1]))
 
 if __name__ == '__main__' :
 	ft_linear_regression()
