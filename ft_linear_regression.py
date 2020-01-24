@@ -1,68 +1,68 @@
-import json
 import csv
-from random import random
+import show
+import argparse
 import numpy as np
-
-def matrix_product(A, B):
-    n = len(A); p = len(A[0]);  q = len(B[0])
-    return [[sum([A[i][k]*B[k][j] for k in range(p)]) for j in range(q)] for i in range(n)]
-
-def get_datas_values_from_csv() :
-	liste = []
-	# Fill list with our datas
-	with open("data.csv") as fcsv:
-		lecteur = csv.reader(fcsv)
-		for ligne in lecteur:
-			liste.append(ligne)
-	return liste
+import matplotlib.pyplot as plt
 
 def dataset() :
-	liste = get_datas_values_from_csv()
-	X = [ [ 1 for j in range(2) ] for i in range(24) ]
-	Y = [1] * 24
-	# Create random values for vector(a,b)
-	T = [ random() for i in range(2) ]
-	# Create vector Y and matrix X
-	for i in range(len(liste)):
+	liste = np.genfromtxt("data.csv", delimiter=",", skip_header=1)
+	x = np.array([1] * 24, float)
+	Y = np.array([1] * 24, float)
+	Theta = np.random.randn(2, 1)
+	for i in range(len(liste)) :
 		if (i < 24):
-			X[i][0] = int(liste[i + 1][0])
-			Y[i] = int(liste[i + 1][1])
-	return X, Y, T
+			x[i] = liste[i][0]
+			Y[i] = liste[i][1]
+	x = x.reshape(x.shape[0], 1)
+	Y = Y.reshape(Y.shape[0], 1)
+	X = np.hstack((x, np.ones(x.shape)))
+	normX = (X - X.mean()) / X.std()
+	return x, normX, Y, Theta
 
-def model(X, T) :
-	return matrix_product(X, T)
+def model(X, Theta) :
+	return X.dot(Theta)
 
-def cost_function(X, Y, T) :
-	m = len(y)
-	return 1 / (2 * m) * ((model(X, T) - Y)**2) # Il faut faire la somme du dernier groupe entre paranthèse
+def cost_function(X, Y, Theta) :
+	m = len(Y)
+	return 1 / 2 * m * np.sum((model(X, Theta) - Y)**2)
 
-def grad(X, Y, T) :
-	m = len(y)
-	return 1 / m * matrix_product(X, model(X, T) - Y) # Il faut faire la transposée de X ici
+def grad(X, Y, Theta) :
+	m = len(Y)
+	return 1 / m * X.T.dot(model(X, Theta) - Y)
 
-def gradient_descent(X, Y, T, learning_rate, n_iterations) :
-	for i in range(0, n_iterations):
-		T = T - learning_rate * grad(X, Y, T)
-	return T
-
-def print_tetas_values(teta0, teta1) :
-	tetas = {
-		"teta0": teta0,
-		"teta1": teta1
-	}
-	with open("file.json", "w") as json_file:
-		json.dump(tetas, json_file, indent=4)
+def gradient_descent(X, Y, Theta, learning_rate, n_iterations) :
+	cost_history = np.zeros(n_iterations)
+	for i in range(0, n_iterations) :
+		Theta = Theta - learning_rate * grad(X, Y, Theta)
+		cost_history[i] = cost_function(X, Y, Theta)
+	return Theta, cost_history
 
 
 def ft_linear_regression() :
-	X, Y, T = dataset()
-	print(T)
-	print(T[0])
-	print(T[1])
-	final_T = gradient_descent(X, Y, T, learning_rate=0.001, n_iterations=1000)
-	teta0 = final_T[0]
-	teta1 = final_T[1]
-	print_tetas_values(teta0, teta1)
+	x, normX, Y, Theta = dataset()
+	learning_rate = 0.08
+	n_iterations = 200
+	final_Theta, cost_history = gradient_descent(normX, Y, Theta, learning_rate, n_iterations)
+	prediction = model(normX, final_Theta)
+
+	return x, Y, prediction, cost_history, final_Theta, n_iterations
+
+def argument_parser() :
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-p", "--prediction", action="count", default=0, help="show the prediction curve")
+	parser.add_argument("-ch", "--cost_history", action="count", default=0, help="show the cost history curve")
+	parser.add_argument("-cd", "--coef_determination", action="count", default=0, help="show the coefficient determination")
+	args = parser.parse_args()
+
+	x, Y, prediction, cost_history, final_Theta, n_iterations = ft_linear_regression()
+
+	if args.prediction >= 1 :
+		show.prediction_curve(x, Y, prediction)
+	elif args.cost_history >= 1 :
+		show.cost_history_curve(n_iterations, cost_history)
+	elif args.coef_determination >= 1 :
+		show.coef_determination(Y, prediction)
+	show.thetas_values(float(final_Theta[0]), float(final_Theta[1]))
 
 if __name__ == '__main__' :
-	ft_linear_regression()
+	argument_parser()
