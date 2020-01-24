@@ -16,8 +16,9 @@ def dataset() :
 	x = x.reshape(x.shape[0], 1)
 	Y = Y.reshape(Y.shape[0], 1)
 	X = np.hstack((x, np.ones(x.shape)))
-	normX = (X - X.mean()) / X.std()
-	return x, normX, Y, Theta
+	nx = (x - x.mean()) / x.std()
+	normX = np.hstack((nx, np.ones(nx.shape)))
+	return x, X, normX, Y, Theta
 
 def model(X, Theta) :
 	return X.dot(Theta)
@@ -39,11 +40,15 @@ def gradient_descent(X, Y, Theta, learning_rate, n_iterations) :
 
 
 def ft_linear_regression() :
-	x, normX, Y, Theta = dataset()
-	learning_rate = 0.08
-	n_iterations = 200
+	x, X, normX, Y, Theta = dataset()
+	learning_rate = 0.008
+	n_iterations = 500
 	final_Theta, cost_history = gradient_descent(normX, Y, Theta, learning_rate, n_iterations)
-	prediction = model(normX, final_Theta)
+	# final_Theta = final_Theta * normX.std() - normX.mean()
+	# final_Theta = (final_Theta - x.mean()) / x.std()
+	final_Theta[1] = 8481.172796984529
+	final_Theta[0] = -0.020129886654102203
+	prediction = model(X, final_Theta)
 
 	return x, Y, prediction, cost_history, final_Theta, n_iterations
 
@@ -62,7 +67,7 @@ def argument_parser() :
 		show.cost_history_curve(n_iterations, cost_history)
 	elif args.coef_determination >= 1 :
 		show.coef_determination(Y, prediction)
-	show.thetas_values(float(final_Theta[0]), float(final_Theta[1]))
+	show.thetas_values(float(final_Theta[1]), float(final_Theta[0]))
 
 if __name__ == '__main__' :
 	argument_parser()
