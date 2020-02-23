@@ -11,7 +11,7 @@
 
 This project will be your first steps into AI and Machine Learning. You're going to start with a simple, basic machine learning algorithm. You will have to create a program that predicts the price of a car by using a linear function train with a gradient descent algorithm.
 
-## Compulsory part
+## Mandatory part
 Implement a linear regression algorithm on a single element, the mileage of a car. To do this you must implement 2 programs:
 * The first program will be used to predict the price of a car based on its mileage. When you launch the program, it will ask you for mileage and should give you an approximate price of the car.
 * The second program will be used to train your model. It will read the data set and make a linear regression on this data.
@@ -21,6 +21,11 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 * Display the line resulting from your linear regression on this same graph and see if it works!
 * Display the curve resulting from your cost history.
 * A program that checks the accuracy of your algorithm.
+
+## Prerequies
+On MacOS install brew:
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+More information on : https://docs.brew.sh/Installation
 
 ## Usage
 ```
