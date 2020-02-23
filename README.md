@@ -23,12 +23,27 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 * A program that checks the accuracy of your algorithm.
 
 ## Prerequies
-### Homebrew
+### Install Homebrew
 Paste that in a macOS Terminal prompt ton install homebrew:
 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
 More informations on : https://docs.brew.sh/Installation
+
+### Install Python 3
+When the installation of homebrew is done, you need to install python3:
+
+`brew install python3`
+
+During this project I was using python3.7
+
+## Packages
+Use the package manager pip3 to install all needed packages.
+```
+pip3 install numpy
+pip3 install matplotlib
+pip3 install sklearn
+```
 
 ## Usage
 ```
