@@ -19,6 +19,7 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 ## Bonuses
 * View the data on a graph.
 * Display the line resulting from your linear regression on this same graph and see if it works!
+* Display the curve resulting from your cost history.
 * A program that checks the accuracy of your algorithm.
 
 ## Usage
@@ -31,5 +32,5 @@ python3 priceEstimation.py
 ```
 -p, --prediction            - show the prediction curve
 -ch, --cost_history         - show the cost history curve
--cd, --coef_determination   - show the coefficient determination
+-cd, --coef_determination   - show the coefficient of determination
 ```
