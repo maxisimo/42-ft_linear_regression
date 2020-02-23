@@ -22,22 +22,8 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 * Display the curve resulting from your cost history.
 * A program that checks the accuracy of your algorithm.
 
-## Prerequies
-### Install Homebrew
-Paste that in a macOS Terminal prompt ton install homebrew:
-
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
-More informations on : https://docs.brew.sh/Installation
-
-### Install Python 3
-When the installation of homebrew is done, you need to install python3:
-
-`brew install python3`
-
-During this project I was using python3.7
-
-## Packages
+## Install
+This project uses [Homebrew](https://brew.sh/) and [Python](https://programwithus.com/learn-to-code/install-python3-mac/). Go check them out if you don't have them locally installed.
 Use the package manager pip3 to install all needed packages.
 ```
 pip3 install numpy
