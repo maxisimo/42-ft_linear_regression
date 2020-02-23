@@ -24,7 +24,9 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 
 ## Prerequies
 On MacOS install brew:
+
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
 More information on : https://docs.brew.sh/Installation
 
 ## Usage
