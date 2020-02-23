@@ -23,11 +23,12 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 * A program that checks the accuracy of your algorithm.
 
 ## Prerequies
-On MacOS install brew:
+### Homebrew
+Paste that in a macOS Terminal prompt ton install homebrew:
 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-More information on : https://docs.brew.sh/Installation
+More informations on : https://docs.brew.sh/Installation
 
 ## Usage
 ```
