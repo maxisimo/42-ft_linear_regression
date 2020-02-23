@@ -24,6 +24,7 @@ Implement a linear regression algorithm on a single element, the mileage of a ca
 
 ## Install
 This project uses [Homebrew](https://brew.sh/) and [Python](https://programwithus.com/learn-to-code/install-python3-mac/). Go check them out if you don't have them locally installed.
+
 Use the package manager pip3 to install all needed packages.
 ```
 pip3 install numpy
