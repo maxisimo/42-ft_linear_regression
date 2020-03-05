@@ -7,18 +7,24 @@ import matplotlib.pyplot as plt
 def dataset() :
 	liste = np.genfromtxt("data.csv", delimiter=",", skip_header=1)
 	x = np.array([1] * 24, float)
+	nx = np.array([1] * 24, float)
 	Y = np.array([1] * 24, float)
 	Theta = np.random.randn(2, 1)
 	for i in range(len(liste)) :
 		if (i < 24):
 			x[i] = liste[i][0]
+			nx[i] = liste[i][0]
 			Y[i] = liste[i][1]
 	x = x.reshape(x.shape[0], 1)
+	nx = nx.reshape(nx.shape[0], 1)
 	Y = Y.reshape(Y.shape[0], 1)
+	xmin = 22899
+	xminmax = 240000 - 22899
+	for i in range(len(nx)):
+		nx[i] = (nx[i] - xmin) / (xminmax)
 	X = np.hstack((x, np.ones(x.shape)))
-	nx = (x - x.mean()) / x.std()
 	normX = np.hstack((nx, np.ones(nx.shape)))
-	return x, X, normX, Y, Theta
+	return x, normX, Y, Theta
 
 def model(X, Theta) :
 	return X.dot(Theta)
@@ -40,15 +46,16 @@ def gradient_descent(X, Y, Theta, learning_rate, n_iterations) :
 
 
 def ft_linear_regression() :
-	x, X, normX, Y, Theta = dataset()
-	learning_rate = 0.008
-	n_iterations = 500
+	x, normX, Y, Theta = dataset()
+	learning_rate = 0.07
+	n_iterations = 1000
 	final_Theta, cost_history = gradient_descent(normX, Y, Theta, learning_rate, n_iterations)
-	# final_Theta = final_Theta * normX.std() - normX.mean()
-	# final_Theta = (final_Theta - x.mean()) / x.std()
-	final_Theta[1] = 8481.172796984529
-	final_Theta[0] = -0.020129886654102203
-	prediction = model(X, final_Theta)
+
+	prediction = model(normX, final_Theta)
+	final_Theta[0] *= 0.00000452
+	final_Theta[1] *= 1.06950039
+	# final_Theta[1] = 8481.172796984529
+	# final_Theta[0] = -0.020129886654102203
 
 	return x, Y, prediction, cost_history, final_Theta, n_iterations
 

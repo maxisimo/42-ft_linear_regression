@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def thetas_values(theta0, theta1) :
 	thetas = {
 		"theta0": theta0,
-		"theta1": theta1
+		"theta1": theta1,
 	}
 	with open("thetas.json", "w") as json_file:
 		json.dump(thetas, json_file, indent=4)
