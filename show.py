@@ -30,8 +30,8 @@ def cost_history_curve(i, cost_history) :
 	plt.show()
 
 def coef_determination(y, pred) :
-	u = ((y - pred)**2).sum()
-	v = ((y - y.mean())**2).sum()
-	coef = (1 - u / v) * 100
+	a = ((y - pred)**2).sum()
+	b = ((y - y.mean())**2).sum()
+	coef = (1 - a / b) * 100
 	print("The determination coefficient is equal to : {:.{prec}f}%".format(coef, prec=2))
 	sys.exit(0)
