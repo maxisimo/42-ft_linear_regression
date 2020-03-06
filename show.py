@@ -7,8 +7,11 @@ def thetas_values(theta0, theta1) :
 		"theta0": theta0,
 		"theta1": theta1,
 	}
-	with open("thetas.json", "w") as json_file:
-		json.dump(thetas, json_file, indent=4)
+	try:
+		with open("thetas.json", "w") as json_file:
+			json.dump(thetas, json_file, indent=4)
+	except:
+		sys.exit(-1)
 	print("Vector Theta as been successfully print in the file : thetas.json")
 	print("\noptional arguments:")
 	print("  -h, --help           show the help message and exit")
@@ -17,8 +20,9 @@ def thetas_values(theta0, theta1) :
 	print("  -cd, --coef_determination\n\t\t       show the coefficient determination")
 
 def prediction_curve(x, Y, prediction) :
-	plt.scatter(x, Y)
+	plt.scatter(x, Y, marker='+')
 	plt.plot(x, prediction, c='r')
+	plt.legend(['prediction curve: f(x)=ax+b'])
 	plt.show()
 
 def cost_history_curve(i, cost_history) :
@@ -28,6 +32,6 @@ def cost_history_curve(i, cost_history) :
 def coef_determination(y, pred) :
 	u = ((y - pred)**2).sum()
 	v = ((y - y.mean())**2).sum()
-	coef = 1 - u / v
-	print("The determination coefficient is equal to : " + str(coef))
+	coef = (1 - u / v) * 100
+	print("The determination coefficient is equal to : {:.{prec}f}%".format(coef, prec=2))
 	sys.exit(0)

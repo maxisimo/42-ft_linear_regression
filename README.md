@@ -3,11 +3,12 @@
 </a>
 <p align="center"><img src="https://user-images.githubusercontent.com/34480775/75110997-3a531400-5635-11ea-9e27-70a4de894c9e.JPG" /></p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![Skill 1](https://img.shields.io/badge/Skill%201-Algorithm&AI-9cf)
-![Skill 2](https://img.shields.io/badge/Skill%202-DB%20%26%20Data-blue)
-![Objectives](https://img.shields.io/badge/Objectives-Machine%20Learning-brightgreen)
+
+<p align="center">
+    <img src="https://img.shields.io/badge/Skill%201-Algorithm&AI-9cf">
+    <img src="https://img.shields.io/badge/Skill%202-DB%20%26%20Data-blue">
+    <img src="https://img.shields.io/badge/Objectives-Machine%20Learning-brightgreen">
+</p>
 
 This project will be your first steps into AI and Machine Learning. You're going to start with a simple, basic machine learning algorithm. You will have to create a program that predicts the price of a car by using a linear function train with a gradient descent algorithm.
 
