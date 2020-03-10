@@ -45,3 +45,6 @@ python3 priceEstimation.py
 -ch, --cost_history         - show the cost history curve
 -cd, --coef_determination   - show the coefficient of determination
 ```
+
+# Rate
+125/100
